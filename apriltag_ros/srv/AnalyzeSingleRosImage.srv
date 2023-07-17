@@ -1,0 +1,4 @@
+sensor_msgs/Image image
+sensor_msgs/CameraInfo camera_info
+---
+apriltag_ros/AprilTagDetectionArray tag_detections

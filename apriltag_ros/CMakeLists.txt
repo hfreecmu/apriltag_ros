@@ -56,6 +56,7 @@ add_message_files(
 add_service_files(
   FILES
   AnalyzeSingleImage.srv
+  AnalyzeSingleRosImage.srv
 )
 
 generate_messages(
@@ -125,6 +126,14 @@ add_executable(${PROJECT_NAME}_single_image_client_node src/${PROJECT_NAME}_sing
 add_dependencies(${PROJECT_NAME}_single_image_client_node ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(${PROJECT_NAME}_single_image_client_node ${PROJECT_NAME}_common ${catkin_LIBRARIES})
 
+#
+add_library(${PROJECT_NAME}_single_ros_image_detector src/single_ros_image_detector.cpp)
+target_link_libraries(${PROJECT_NAME}_single_ros_image_detector ${PROJECT_NAME}_common ${catkin_LIBRARIES})
+
+add_executable(${PROJECT_NAME}_single_ros_image_server_node src/${PROJECT_NAME}_single_ros_image_server_node.cpp)
+add_dependencies(${PROJECT_NAME}_single_ros_image_server_node ${PROJECT_NAME}_generate_messages_cpp)
+target_link_libraries(${PROJECT_NAME}_single_ros_image_server_node ${PROJECT_NAME}_single_ros_image_detector ${catkin_LIBRARIES})
+#
 
 #############
 ## Install ##
